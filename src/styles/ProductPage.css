@@ -1,0 +1,33 @@
+.back-res {
+  color: grey;
+  margin: 20px;
+}
+
+.card-body {
+  background-color: #eeeeee;
+  padding: 1rem;
+  border: 1px solid #f6f6f6;
+  border-radius: 6px;
+}
+
+.card-body li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.card-body .add-to-cart {
+    background-color: #0093fa;    
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 18px;
+    outline: 0;
+    color:#fff;
+    box-shadow: rgb(223 223 223 / 25%) 0px 0.5rem 1rem;
+    border: 1px solid #0093fa;
+}
