@@ -6,14 +6,12 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
 } from "../constants/CartConstant";
 
-export const cartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (state = {}, action) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
-      console.log(action.payload);
       const existitem = state.cartItems.find((x) => x._id === item._id);
       if (existitem) {
-        console.log(existitem);
         return {
           ...state,
           cartItems: state.cartItems.map((x) =>
@@ -30,7 +28,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
     case CART_REMOVE_ITEM:
       return {
         ...state,
-        cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+        cartItems: state.cartItems.filter((x) => x._id !== action.payload),
       };
 
     case CART_SAVE_SHIPPING_ADDRESS:

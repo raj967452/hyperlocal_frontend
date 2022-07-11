@@ -33,14 +33,18 @@ const Product = ({ product }) => {
                 <Typography
                   variant="h6"
                   component="span"
-                  color="secondary"
-                  className=""
+                  color="primary"
+                  style={
+                    product.discountedSellingPrice
+                      ? { textDecoration: "line-through" }
+                      : ""
+                  }
                 >
                   {product.mrp}/Kg
                 </Typography>
               </Grid>
-              <Grid item xs={6}>
-                <Typography variant="h6" component="span" color="primary">
+              <Grid item xs={6} style={{ textAlign: "right" }}>
+                <Typography variant="h6" component="span" color="secondary">
                   {product.discountedSellingPrice}/Kg
                 </Typography>
               </Grid>
@@ -48,7 +52,7 @@ const Product = ({ product }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Link href={`products/product/${product._id}`}>Buy Now</Link>
+          <Link href={`products/product/${product._id}`}>Product Details</Link>
         </CardActions>
       </Card>
     </Grid>

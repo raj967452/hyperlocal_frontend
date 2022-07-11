@@ -8,9 +8,8 @@ import configureStore from "./services/ConfigureStore";
 /*import components */
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+
 const store = configureStore();
-
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

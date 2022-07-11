@@ -1,39 +1,28 @@
-import { applyMiddleware, compose, createStore, combineReducers } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
+import rootReducer from "./reducers";
 
-import {
-  productDetailsReducers,
-  productListReducers,
-} from "./reducers/ProductReducer";
-import {
-  userDetailsReducer,
-  userRegisterReducer,
-  userSigninReducer,
-} from "./reducers/UserReducer";
-import { cartReducer } from "./reducers/CartReducer";
-
-const initalState = {
-  userSignIn: {
-    userInfo: localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo"))
-      : null,
-  },
+const initialState = {
   cart: {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
   },
+  userSignin: {
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
+  },
+  checkout: {
+    shippingAddress: localStorage.getItem("shippingAddress")
+      ? JSON.parse(localStorage.getItem("shippingAddress"))
+      : {},
+    billingAddress: localStorage.getItem("billingAddress")
+      ? JSON.parse(localStorage.getItem("billingAddress"))
+      : {},
+  },
 };
-
-const rootReducer = combineReducers({
-  productDetails: productDetailsReducers,
-  productList: productListReducers,
-  userDetails: userDetailsReducer,
-  userRegister: userRegisterReducer,
-  userSignin: userSigninReducer,
-  cart: cartReducer,
-});
 
 export default function configureStore() {
   const middlewares = [thunk];
@@ -44,7 +33,7 @@ export default function configureStore() {
   const enhancers = [middlewareEnhancer];
   const composedEnhancers = compose(...enhancers);
 
-  const store = createStore(rootReducer, initalState, composedEnhancers);
+  const store = createStore(rootReducer, initialState, composedEnhancers);
 
   return store;
 }

@@ -7,18 +7,19 @@ import {
 } from "../constants/CartConstant";
 
 export const addToCart = (productID, qty) => async (dispatch, getState) => {
-    console.log(productID, qty);
+  console.log(productID, qty);
   const { data } = await axios.get(`/api/products/${productID}`);
 
   dispatch({
     type: CART_ADD_ITEM,
     payload: {
-      name: data.name,
-      mrp: data.mrp,
-      outOfStock: data.outOfStock,
       _id: data._id,
-      discountedSellingPrice: data.discountedSellingPrice,
+      name: data.name,
+      mrp: parseFloat(data.mrp).toFixed(2),
+      outOfStock: data.outOfStock,
+      discountedSellingPrice: parseFloat(data.discountedSellingPrice).toFixed(2),
       availableQuantity: data.availableQuantity,
+      weightInGms: parseFloat(data.weightInGms).toFixed(2),
       qty,
     },
   });

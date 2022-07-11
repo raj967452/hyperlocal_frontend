@@ -31,13 +31,10 @@ const ProductPage = (props) => {
     dispatch(detailsProduct(productID));
   }, [dispatch, productID, qty]);
 
-  useEffect(() => {
+  const addToCartItem = () => {
     if (productID) {
       dispatch(addToCart(productID, qty));
     }
-  }, [dispatch, productID, qty]);
-
-  const addToCartItem = () => {
     props.history.push(`/cart`);
   };
 
@@ -61,7 +58,7 @@ const ProductPage = (props) => {
                 {product.name}
               </Typography>
               <Typography gutterBottom variant="h5" component="p">
-                MRP: Rs. {product.mrp}/Kg
+                MRP: Rs. {parseFloat(product.mrp).toFixed(2)}/Kg
               </Typography>
               <Typography
                 gutterBottom
@@ -69,7 +66,8 @@ const ProductPage = (props) => {
                 component="p"
                 color="secondary"
               >
-                Our Price: Rs. {product.discountedSellingPrice}/Kg
+                Our Price: Rs.{" "}
+                {parseFloat(product.discountedSellingPrice).toFixed(2)}/Kg
               </Typography>
 
               <div className="card card-body">
@@ -79,8 +77,10 @@ const ProductPage = (props) => {
                     <div className="price">
                       Rs.{" "}
                       {product.discountedSellingPrice
-                        ? product.discountedSellingPrice * qty
-                        : product.mrp * qty}
+                        ? parseFloat(
+                            product.discountedSellingPrice * qty
+                          ).toFixed(2)
+                        : parseFloat(product.mrp * qty).toFixed(2)}
                     </div>
                   </li>
                   <li>
@@ -103,10 +103,12 @@ const ProductPage = (props) => {
                             variant="standard"
                             sx={{ m: 1, minWidth: 120 }}
                           >
-                            <InputLabel id="product-qty">Quantity</InputLabel>
+                            <InputLabel id={"product-qty_" + product._id}>
+                              Quantity
+                            </InputLabel>
                             <Select
-                              labelId="product-qty"
-                              id="product-qty-standard"
+                              labelId={"product-qty_" + product._id}
+                              id={"pQty_" + product._id}
                               value={qty}
                               onChange={(e) => setQty(e.target.value)}
                               label="Quantity"

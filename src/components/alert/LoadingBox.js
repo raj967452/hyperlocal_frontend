@@ -1,8 +1,12 @@
 import React from "react";
-import { CircularProgress } from "@material-ui/core";
+import { LinearProgress, Box } from "@material-ui/core";
 
 const LoadingBox = () => {
-  return <CircularProgress />;
+  return (
+    <Box sx={{ width: "100%" }}>
+      <LinearProgress />
+    </Box>
+  );
 };
 
 export default LoadingBox;

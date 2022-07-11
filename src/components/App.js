@@ -13,6 +13,7 @@ import Register from "../pages/Register";
 //const SignIn = React.lazy(() => import("../pages/SignIn"));
 //const Register = React.lazy(() => import("../pages/Register"));
 const ProductPage = React.lazy(() => import("../pages/ProductPage"));
+const Checkout = React.lazy(() => import("../pages/Checkout"));
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/signin" component={SignIn}></Route>
           <Route exact path="/register" component={Register}></Route>
           <Route path="/products/product/:id" component={ProductPage}></Route>
+          <Route path="/checkout" component={Checkout}></Route>
           {/* <Route
             path="/searchresults/:query"
             component={SearchResults}

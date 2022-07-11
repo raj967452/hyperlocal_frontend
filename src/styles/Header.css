@@ -40,7 +40,7 @@ header {
   white-space: nowrap;
   font-size: 18px;
 }
-.MuiSvgIcon-root{
+.nav-links .MuiSvgIcon-root{
     color:#ffffff !important
 }
 
